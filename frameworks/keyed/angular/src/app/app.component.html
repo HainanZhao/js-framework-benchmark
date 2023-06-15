@@ -34,7 +34,29 @@
                     <a href="#" (click)="select(item, $event)">{{item.label}}</a>
                 </td>
                 <td class="col-md-1"><a href="#" (click)="delete(item, $event)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-                <td class="col-md-6"></td>
+                <td class="col-md-6">
+                    <ng-container *ngFor="let cols of [].constructor(3); let i = index">
+                        <div class="deep-nested-node-level-1">
+                            <div class="deep-nested-node-level-2">
+                                <div class="deep-nested-node-level-3">
+                                    <div class="deep-nested-node-level-4">
+                                        <div class="deep-nested-node-level-5">
+                                            <p *ngIf="(item.id + i) % 9 === 1">label</p>
+                                            <input *ngIf="(item.id + i) % 9 === 2" type="text" placeholder="text input" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 3" type="button" value="input button" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 4" type="checkbox" value="checkbox" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 5" type="color" value="red" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 6" type="date" value="date" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 7" type="email" value="abc@test.com" (click)="handleAction()"/>
+                                            <button *ngIf="(item.id + i) % 9 === 8" (click)="handleAction()">button button</button>
+                                            <select *ngIf="(item.id + i) % 9 === 0" (select)="handleAction()"><option>1</option><option>2</option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>                   
+                </td>
             </tr>
         </tbody>
     </table>

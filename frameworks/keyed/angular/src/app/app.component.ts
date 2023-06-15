@@ -84,4 +84,8 @@ export class AppComponent {
             this.data[998] = a;
         }
     }
+
+    handleAction() {
+        console.log('action');
+    }
 }

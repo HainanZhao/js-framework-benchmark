@@ -50,6 +50,10 @@ class Row extends Component {
     };
   }
 
+  handleAction = () => {
+    console.log('action');
+  }
+
   render() {
     const { selected, item } = this.props;
 
@@ -64,7 +68,29 @@ class Row extends Component {
               <span className="glyphicon glyphicon-remove" aria-hidden="true" />
             </a>
           </td>
-          <td className="col-md-6" />
+          <td className="col-md-6" >
+            {[...Array(3).keys()].map(x => 
+               <div class="deep-nested-node-level-1">
+                <div class="deep-nested-node-level-2">
+                  <div class="deep-nested-node-level-3">
+                      <div class="deep-nested-node-level-4">
+                          <div class="deep-nested-node-level-5">
+                            {((item.id + x) % 9 === 1)? <p>label</p> : null}
+                            {((item.id + x) % 9 === 2)? <input type="text" placeholder="text input" onClick={this.handleAction}/>: null}
+                            {((item.id + x) % 9 === 3)? <input type="button" value="input button" onClick={this.handleAction}/> : null}
+                            {((item.id + x) % 9 === 4)? <input type="checkbox" value="checkbox" onClick={this.handleAction}/> : null}
+                            {((item.id + x) % 9 === 6)? <input type="date" value="date" onClick={this.handleAction}/> : null}
+                            {((item.id + x) % 9 === 5)? <input type="color" value="red" onClick={this.handleAction}/> : null}
+                            {((item.id + x) % 9 === 8)? <button onClick={this.handleAction}>button button</button> : null}
+                            {((item.id + x) % 9 === 7)? <input type="email" value="abc@test.com" onClick={this.handleAction}/> : null}
+                            {((item.id + x) % 9 === 0)? <select onSelect={this.handleAction}><option>1</option><option>2</option></select>: null}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>               
+            )}
+          </td>
         </tr>
     );
   }

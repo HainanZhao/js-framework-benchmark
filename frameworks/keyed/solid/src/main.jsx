@@ -49,8 +49,10 @@ const App = () => {
       const idx = d.findIndex(d => d.id === id);
       return [...d.slice(0, idx), ...d.slice(idx + 1)];
     }),
-    isSelected = createSelector(selected);
-
+    isSelected = createSelector(selected),
+    handleAction = () => {
+      console.log('action');
+    };
   return <div class='container'>
     <div class='jumbotron'><div class='row'>
       <div class='col-md-6'><h1>SolidJS Keyed</h1></div>
@@ -70,7 +72,30 @@ const App = () => {
           <td class='col-md-1' textContent={ rowId } />
           <td class='col-md-4'><a onClick={[setSelected, rowId]} textContent={ row.label() } /></td>
           <td class='col-md-1'><a onClick={[remove, rowId]}><span class='glyphicon glyphicon-remove' aria-hidden="true" /></a></td>
-          <td class='col-md-6'/>
+          <td class='col-md-6'>
+            <For each={[1,2,3]}>{ i => 
+               <div class="deep-nested-node-level-1">
+               <div class="deep-nested-node-level-2">
+                   <div class="deep-nested-node-level-3">
+                       <div class="deep-nested-node-level-4">
+                           <div class="deep-nested-node-level-5">
+                              {((rowId + i) % 9 === 1)? <p>label</p> : null}
+                              {((rowId + i) % 9 === 2)? <input type="text" placeholder="text input" onClick={[handleAction, rowId]}/>: null}
+                              {((rowId + i) % 9 === 3)? <input type="button" value="input button" onClick={[handleAction, rowId]}/> : null}
+                              {((rowId + i) % 9 === 4)? <input type="checkbox" value="checkbox" onClick={[handleAction, rowId]}/> : null}
+                              {((rowId + i) % 9 === 5)? <input type="color" value="red" onClick={[handleAction, rowId]}/> : null}
+                              {((rowId + i) % 9 === 6)? <input type="date" value="date" onClick={[handleAction, rowId]}/> : null}
+                              {((rowId + i) % 9 === 7)? <input type="email" value="abc@test.com" onClick={[handleAction, rowId]}/> : null}
+                              {((rowId + i) % 9 === 8)? <button onClick={[handleAction, rowId]}>button button</button> : null}
+                              {((rowId + i) % 9 === 0)? <select onSelect={[handleAction, rowId]}><option>1</option><option>2</option></select>: null}
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }</For>
+         
+          </td>
         </tr>
       }}</For>
     </tbody></table>
