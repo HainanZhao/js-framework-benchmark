@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Angular {{version}} keyed</h1>
+            </div>
+            <div class="col-md-6">
+                <div class="col-sm-6 smallpad">
+                    <button type="button" class="btn btn-primary btn-block" id="run" (click)="run()" ref="text">Create 1,000 rows</button>
+                </div>
+                <div class="col-sm-6 smallpad">
+                    <button type="button" class="btn btn-primary btn-block" id="runlots" (click)="runLots()">Create 10,000 rows</button>
+                </div>
+                <div class="col-sm-6 smallpad">
+                    <button type="button" class="btn btn-primary btn-block" id="add" (click)="add()" ref="text">Append 1,000 rows</button>
+                </div>
+                <div class="col-sm-6 smallpad">
+                    <button type="button" class="btn btn-primary btn-block" id="update" (click)="update()">Update every 10th row</button>
+                </div>
+                <div class="col-sm-6 smallpad">
+                    <button type="button" class="btn btn-primary btn-block" id="clear" (click)="clear()">Clear</button>
+                </div>
+                <div class="col-sm-6 smallpad">
+                    <button type="button" class="btn btn-primary btn-block" id="swaprows" (click)="swapRows()">Swap Rows</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover table-striped test-data">
+        <tbody>
+            <tr [class.danger]="item.id === selected" *ngFor="let item of data; trackBy: itemById">
+                <td class="col-md-1">{{item.id}}</td>
+                <td class="col-md-4">
+                    <a href="#" (click)="select(item, $event)">{{item.label}}</a>
+                </td>
+                <td class="col-md-1"><a href="#" (click)="delete(item, $event)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                <td class="col-md-6">
+                    <ng-container *ngFor="let cols of [].constructor(3); let i = index">
+                        <div class="deep-nested-node-level-1">
+                            <div class="deep-nested-node-level-2">
+                                <div class="deep-nested-node-level-3">
+                                    <div class="deep-nested-node-level-4">
+                                        <div class="deep-nested-node-level-5">
+                                            <p *ngIf="(item.id + i) % 9 === 1">label</p>
+                                            <input *ngIf="(item.id + i) % 9 === 2" type="text" placeholder="text input" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 3" type="button" value="input button" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 4" type="checkbox" value="checkbox" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 5" type="color" value="red" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 6" type="date" value="date" (click)="handleAction()"/>
+                                            <input *ngIf="(item.id + i) % 9 === 7" type="email" value="abc@test.com" (click)="handleAction()"/>
+                                            <button *ngIf="(item.id + i) % 9 === 8" (click)="handleAction()">button button</button>
+                                            <select *ngIf="(item.id + i) % 9 === 0" (select)="handleAction()"><option>1</option><option>2</option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>                   
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="preloadicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+</div>
